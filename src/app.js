@@ -63,6 +63,15 @@ app.get('/cursos2',function(req,res){
 	})
 })
 
+app.post('/crearcurso',function(req,res){
+	res.render('cursos1',{
+		id:req.body.id,
+		nombreCurso:req.body.nombreCurso,
+		duracion:req.body.duracion,
+		costoCurso:req.body.costoCurso
+	})
+})
+
 //error
 app.get('*', function(req, res){
 	res.render('error');

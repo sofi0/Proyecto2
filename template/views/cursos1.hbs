@@ -11,38 +11,29 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Estadistica</td>
-      <td>120 horas</td>
-      <td>$500.000</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Ingles B2</td>
-      <td>180 horas</td>
-      <td>$700.000</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Bases De Datos</td>
-      <td>130 horas</td>
-      <td>$550.000</td>
-    </tr>
+    {{{listarCursos}}}
   </tbody>
 </table>
 </div>
-<br>
+<br>s
+
+{{{crearCurso id nombreCurso duracion  costoCurso}}}
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
 	               <h2>Crear Curso</h2>
-                 <form method="get">
+                 <form method="post" action="/crearcurso">
+                  <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"></span>
+                            <div class="col-md-8">
+                                <input id="id" name="id" type="int" placeholder="ID" class="form-control">
+                            </div>
+                        </div>
                     <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"></span>
                             <div class="col-md-8">
-                                <input id="nombre-curso" name="nombre-curso" type="text" placeholder="nombre curso" class="form-control">
+                                <input id="nombreCurso" name="nombreCurso" type="text" placeholder="nombre curso" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +45,7 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"></span>
                             <div class="col-md-8">
-                                <input id="costo-curso" name="costo-curso" type="int" placeholder="costo" class="form-control">
+                                <input id="costoCurso" name="costoCurso" type="int" placeholder="costo" class="form-control">
                             </div>
                         </div>
 		                <input type="submit">

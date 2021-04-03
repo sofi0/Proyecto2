@@ -1,42 +1,57 @@
 const hbs = require ('hbs');
-// // const funciones = require ('/funciones');
+const funciones = require ('.././funciones');
 
-// 	hbs.registerHerlper('listar', ()=>{
-// 		try{
-// 			return funciones.listar()
-// 		}catch (error){
-// 			return "No hay cursos"
-// 		}
-// 	});
+	hbs.registerHelper('listar', ()=>{
+		try{
+			return funciones.listar()
+		}catch (error){
+			return "No hay cursos"
+		}
+	});
 
-// 	hbs.registerHerlper('listarNombre', ()=>{
-// 		try {
-// 			return funciones.listarNombre()
-// 		}catch (err){
-// 			return "no existen estudiantes"
-// 		}
-// 	});
+	hbs.registerHelper('listarNombre', ()=>{
+		try {
+			return funciones.listarNombre()
+		}catch (err){
+			return "no existen estudiantes"
+		}
+	});
 
-// 	hbs.registerHerlper('verEst', (ced)=> {
-// 		listaEstudiante = require ('./estudiante.json')
-// 		let encontrar = listaEstudiante.find(buscar => buscar.cedula == ced)
-// 		if (encontrar){
-// 			texto = "<div class= 'alert alert-success' role='alert'> persona encontrada"
-// 			texto = texto + `la cedula es ${encontrar.cedula} <br>`
-// 		}
-// 	})
+	hbs.registerHelper('verEst', (ced)=> {
+		listaEstudiante = require ('./estudiante.json')
+		let encontrar = listaEstudiante.find(buscar => buscar.cedula == ced)
+		if (encontrar){
+			texto = "<div class= 'alert alert-success' role='alert'> persona encontrada"
+			texto = texto + `la cedula es ${encontrar.cedula} <br>`
+		}
+	})
 
-	hbs.registerHerlper('crear', (ced, nomb, email) => {
+	hbs.registerHelper('crear', (ced, nomb, email) => {
 		if (ced){
 			let est ={
 				cedula: parseInt(ced),
 				nombre: nomb,
 				email: email,
 			}
-			console.log("funcionando");
-			
+			return funciones.crear(est)
 		}
-	});
+	})
+
+	hbs.registerHelper('crearCurso', (id, nombreCurso, duracion, costoCurso) => {
+		if (id){
+			let curso ={
+				id: parseInt(id),
+				nombre: nombreCurso,
+				duracion: duracion,
+				costo: costoCurso
+			}
+			return funciones.nuevoCurso(curso)
+		}
+	})
+
+	hbs.registerHelper('listarCursos', () => {
+			return funciones.mostrarCursos()
+	})
 
 // 	/*hbs.registerHerlper('registrar', (ced, nomb, pais)=>{
 // 		if (ced){
