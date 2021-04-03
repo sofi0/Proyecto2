@@ -1,5 +1,5 @@
 const hbs = require ('hbs');
-const funciones = require (',/funciones');
+// const funciones = require ('/funciones');
 
 	hbs.registerHerlper('listar', ()=>{
 		try{
@@ -26,17 +26,18 @@ const funciones = require (',/funciones');
 		}
 	})
 
-	// hbs. registerHerlper('crear', (ced, nomb, email) => {
-	// 	if (ced){
-	// 		let est ={
-	// 			cedula: parseInt(ced),
-	// 			nombre: nomb,
-	// 			email: email,
-	// 		}
-	// 		return funciones.estudiante(est)
-	// 		console.log("funcionando")
-	// 	}
-	// });
+	hbs. registerHerlper('crear', (ced, nomb, email) => {
+		if (ced){
+			let est ={
+				cedula: parseInt(ced),
+				nombre: nomb,
+				email: email,
+			}
+			console.log("funcionando")
+			return funciones.estudiante(est)
+
+		}
+	});
 
 	/*hbs.registerHerlper('registrar', (ced, nomb, pais)=>{
 		if (ced){

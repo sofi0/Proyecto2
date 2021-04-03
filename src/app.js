@@ -2,14 +2,16 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const hbs = require('hbs')
-const bodyparser = require('body-parser')
+const bodyParser = require('body-parser')
 require('./helpers/helpers')
+
 
 //path
 const dirPublic = path.join(__dirname, "../public")
 const dirViews = path.join(__dirname, "../template/views")
 const dirPartials = path.join(__dirname, "../template/partials")
 
+app.use(bodyParser.urlencoded({extended: false}));
 
 //static
 app.use(express.static(dirPublic))
@@ -40,14 +42,14 @@ app.get('/registrar',function(req,res){
 	res.render('registrar')
 })
 
-// app.post('/registrar',function(req,res){
-// 	res.render('registrar',{
-// 		titulo:'registrar',
-// 		ced:req.body.cedula,
-// 		nomb:req.body.nombre,
-// 		email:req.body.email,
-// 	})
-// })
+app.post('/registrar',function(req,res){
+	res.render('registrar',{
+		titulo:'registrar',
+		ced:req.body.cedula,
+		nomb:req.body.nombre,
+		email:req.body.email,
+	})
+})
 
 app.post('/cursos1',function(req,res){
 	res.render('cursos2',{

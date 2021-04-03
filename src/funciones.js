@@ -21,6 +21,7 @@ const listarNombres =() => {
 
 const crear = (estudiante) =>{
 	listar ();
+	console.log("funcionando")
 	let est ={
 		cedula: estudiante.cedula,
 		nombre: estudiante.nombre,
