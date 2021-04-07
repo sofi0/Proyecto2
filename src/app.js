@@ -48,6 +48,7 @@ app.post('/registrar',function(req,res){
 		ced:req.body.cedula,
 		nomb:req.body.nombre,
 		email:req.body.email,
+		idCurso:req.body.idCurso
 	})
 })
 
@@ -57,9 +58,23 @@ app.post('/cursos1',function(req,res){
 	})
 }) 
 
+app.post('/eliminar',function(req,res){
+	res.render('cursos2',{
+		titulo:'ver curso',	
+		idEst: req.body.idEst
+	})
+})
+
 app.get('/cursos2',function(req,res){
 	res.render('cursos2',{
 		titulo:'cursos2'
+	})
+})
+
+app.post('/eliminar',function(req,res){
+	res.render('cursos2',{
+		titulo:'cursos2',
+		idC:req.body.idCur
 	})
 })
 
@@ -81,12 +96,7 @@ app.listen(3000, () => {
 	console.log('servidor en el puerto 3000')
 });
 
-/*app.get('cursos1',(req,res) =>{
-	res.render('cursos1', {
-		nombre:
-	});
-});*/
 
-//error
+
 
 

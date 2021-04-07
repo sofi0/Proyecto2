@@ -1,19 +1,35 @@
 const hbs = require ('hbs');
 const funciones = require ('.././funciones');
 
-	hbs.registerHelper('listar', ()=>{
-		try{
-			return funciones.listar()
-		}catch (error){
-			return "No hay cursos"
+	// hbs.registerHelper('listar', ()=>{
+	// 	try{
+	// 		return funciones.listar()
+	// 	}catch (error){
+	// 		return "No hay cursos"
+	// 	}
+	// });
+
+	hbs.registerHelper('listarEstudiantes', ()=>{
+		try {
+			return funciones.listarNombres()
+		}catch (err){
+			return "no existen estudiantes"
 		}
 	});
 
-	hbs.registerHelper('listarNombre', ()=>{
+	hbs.registerHelper('eliminarEstudiante', (idEst)=>{
 		try {
-			return funciones.listarNombre()
+			return funciones.eliminarEst(idEst)
 		}catch (err){
-			return "no existen estudiantes"
+			return "No se pudo eliminar el estudiante"
+		}
+	});
+
+	hbs.registerHelper('verEstCur', (idC)=>{
+		try {
+			return funciones.verEstCurso(idC)
+		}catch (err){
+			return "hubo un error al mostrar los estudiantes"
 		}
 	});
 
@@ -26,12 +42,13 @@ const funciones = require ('.././funciones');
 		}
 	})
 
-	hbs.registerHelper('crear', (ced, nomb, email) => {
+	hbs.registerHelper('crear', (ced, nomb, email, idCurso) => {
 		if (ced){
 			let est ={
 				cedula: parseInt(ced),
 				nombre: nomb,
 				email: email,
+				idCurso:idCurso
 			}
 			return funciones.crear(est)
 		}

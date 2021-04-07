@@ -1,4 +1,7 @@
 const fs = require ('fs')
+let listaEstudiante = [];
+let cursoestudiante = [];
+let listaCurEst = [];
 
 // const listar =()=> {
 // 	listaEstudiante = require ('./estudiantes.json')
@@ -9,14 +12,52 @@ const fs = require ('fs')
 // }
 
 // const listarNombres =() => {
-// 	listaEstudiante=require('./estudiante.json')
-// 		let texto = "<select name='cedula' class='form-control'>";
+// 	listaEstudiante=require('./estudiantes.json')
+// 		var texto = "";
 // 		listaEstudiante.forEach(est => {
-// 			texto= `${texto} <option value='${est.cedula}'>${est.nombre}<option>`
-// 		})
-// 		texto = texto + "</select>"
+// 			texto = texto + `<tr><td>${est.cedula}</td> <td>${est.nombre}</td> <td>${est.email}</td> <td><button type="submit" class="btn btn-danger" value="${est.cedula}" name="idEst">Eliminar</button></td></tr> `
+// 		}) 
 // 	return texto
+
 // } 
+
+const eliminarEst =(idEst) => {
+	if (idEst){
+		listaEstudiante=require('./estudiantes.json')
+		let estudiantes = listaEstudiante.filter(elemento => elemento.cedula != idEst)
+		if (estudiantes){
+			listaEstudiante = estudiantes
+			guardar()
+			return texto = "estudiante fue eliminado"
+		}
+		else {
+			return texto = "No se encontró el estudiante"
+		}
+	}
+
+} 
+
+
+const verEstCurso = (idC) => {
+	console.log("funcionando" + idC) 
+	if (idC){
+		
+		listaEstudiante=require('./estudiantes.json')
+		listaCurEst=require('./cursoestudiante.json')
+
+		let estudiantes = listaCurEst.filter(elemento => elemento.idCurso == idC)
+		var texto = "";
+		console.log("funcionando2")
+		forEach.estudiantes(elemento=> {
+
+			texto = texto + `<tr><td>${est.cedula}</td> <td>${est.nombre}</td> <td>${est.email}</td> <td><button type="submit" class="btn btn-danger" value="${est.cedula}" name="idEst">Eliminar</button></td></tr> `
+		})
+
+		return texto
+	}
+
+} 
+
 
 const nuevoCurso = (curso) =>{
 	listaCursos = require ('./cursos.json')
@@ -64,20 +105,27 @@ const mostrarCursos = () => {
 
 
 const crear = (estudiante) =>{
-	listar ();
+	listaEstudiante = require ('./estudiantes.json')
+	cursoestudiante = require ('./cursoestudiante.json')
+	// listar ();
 	let est ={
 		cedula: estudiante.cedula,
 		nombre: estudiante.nombre,
 		email: estudiante.email
-		
 	}
+
+	let idestcurso ={
+		cedula: estudiante.cedula,
+		idCurso: estudiante.idCurso
+	}
+
 	let duplicado = listaEstudiante.find(nom => nom.cedula == estudiante.cedula)
 	if (duplicado){
 		console.log('ya existe')
 	}
 	else {
 		listaEstudiante.push(est)
-		console.log(listaEstudiante)
+		cursoestudiante.push(idestcurso)
 		guardar()
 	}
 }
@@ -88,15 +136,21 @@ const guardar = () => {
 		if (err) throw (err);
 		console.log('archivo fue creado con exito')
 	})
+
+	let datos2 = JSON.stringify(cursoestudiante);
+	fs.writeFile('src/cursoestudiante.json', datos2, (err)=>{
+		if (err) throw (err);
+		console.log('archivo fue creado con exito')
+	})
 }
 
-const listar = () => {
-	try {
-		listaEstudiante = JSON.parse(fs.readFileSync('estudiantes.json'))
-	}catch (err) {
-		listaEstudiante=[];
-	}
-}
+// const listar = () => {
+// 	try {
+// 		listaEstudiante = JSON.parse(fs.readFileSync('estudiantes.json'))
+// 	}catch (err) {
+// 		listaEstudiante=[];
+// 	}
+// }
 
 
 // const ver = () => {
@@ -119,9 +173,9 @@ const listar = () => {
 // } 
 
 module.exports = {
-	//listar,
-	//listarNombres
 	crear,
 	nuevoCurso,
-	mostrarCursos
+	mostrarCursos,
+	eliminarEst,
+	verEstCurso
 }
