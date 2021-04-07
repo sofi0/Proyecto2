@@ -61,7 +61,8 @@ app.post('/cursos1',function(req,res){
 app.post('/eliminar',function(req,res){
 	res.render('cursos2',{
 		titulo:'ver curso',	
-		idEst: req.body.idEst
+		idEst: req.body.idEst,
+		idC:req.body.idCur
 	})
 })
 
@@ -71,12 +72,6 @@ app.get('/cursos2',function(req,res){
 	})
 })
 
-app.post('/eliminar',function(req,res){
-	res.render('cursos2',{
-		titulo:'cursos2',
-		idC:req.body.idCur
-	})
-})
 
 app.post('/crearcurso',function(req,res){
 	res.render('cursos1',{

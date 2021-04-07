@@ -47,12 +47,13 @@ const verEstCurso = (idC) => {
 
 		let estudiantes = listaCurEst.filter(elemento => elemento.idCurso == idC)
 		var texto = "";
-		console.log("funcionando2")
-		forEach.estudiantes(elemento=> {
-
+		console.log(estudiantes)
+		estudiantes.forEach(elemento=> {
+			let est = listaEstudiante.find(buscar=> buscar.cedula == elemento.cedula)
+			console.log(est + elemento.cedula)
 			texto = texto + `<tr><td>${est.cedula}</td> <td>${est.nombre}</td> <td>${est.email}</td> <td><button type="submit" class="btn btn-danger" value="${est.cedula}" name="idEst">Eliminar</button></td></tr> `
 		})
-
+		console.log(estudiantes)
 		return texto
 	}
 
