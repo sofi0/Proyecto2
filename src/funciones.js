@@ -3,6 +3,7 @@ let listaEstudiante = [];
 let cursoestudiante = [];
 let listaCurEst = [];
 
+
 // const listar =()=> {
 // 	listaEstudiante = require ('./estudiantes.json')
 // 	texto = "lista estudiantes"
@@ -21,10 +22,23 @@ let listaCurEst = [];
 
 // } 
 
-const eliminarEst =(idEst) => {
-	if (idEst){
+const eliminarEst =(estudent) => {
+	console.log("id del estudiante => " + estudent.idEst )
+	console.log("id del curso => " + estudent.idC )
+	console.log(estudent)
+	if (estudent){
 		listaEstudiante=require('./estudiantes.json')
-		let estudiantes = listaEstudiante.filter(elemento => elemento.cedula != idEst)
+		listaCurEst=require('./cursoestudiante.json')
+
+		let estudiantes = listaEstudiante.filter(elemento => elemento.cedula != estudent.idEst)
+		let listaCurEst2 = [];
+		for(var i=0; i<listaCurEst.length; i++){
+			if(listaCurEst[i].cedula==estudent.idEst){
+				console.log("funciona22")
+				//&& listaCurEst[i].id==estudent.idC
+			}
+		}
+
 		if (estudiantes){
 			listaEstudiante = estudiantes
 			guardar()
@@ -38,22 +52,21 @@ const eliminarEst =(idEst) => {
 } 
 
 
-const verEstCurso = (idC) => {
-	console.log("funcionando" + idC) 
+const verEstCurso = (idC) => { 
 	if (idC){
-		
+		//console.log("funcionando1")
 		listaEstudiante=require('./estudiantes.json')
 		listaCurEst=require('./cursoestudiante.json')
 
 		let estudiantes = listaCurEst.filter(elemento => elemento.idCurso == idC)
 		var texto = "";
-		console.log(estudiantes)
+		//console.log(estudiantes)
 		estudiantes.forEach(elemento=> {
 			let est = listaEstudiante.find(buscar=> buscar.cedula == elemento.cedula)
 			console.log(est + elemento.cedula)
-			texto = texto + `<tr><td>${est.cedula}</td> <td>${est.nombre}</td> <td>${est.email}</td> <td><button type="submit" class="btn btn-danger" value="${est.cedula}" name="idEst">Eliminar</button></td></tr> `
+			texto = texto + `<tr><td><select type="text" name="idC"><option value="${idC}">${idC}</option></select></td> <td>${est.cedula}</td> <td>${est.nombre}</td> <td>${est.email}</td> <td><button type="submit" class="btn btn-danger" value="${est.cedula}" name="idEst">Eliminar</button></td></tr> `
 		})
-		console.log(estudiantes)
+		//console.log(estudiantes)
 		return texto
 	}
 
@@ -99,6 +112,7 @@ const mostrarCursos = () => {
       <td>${curso.nombreCurso}</td>
       <td>${curso.duracion} Horas</td>
       <td>${curso.costoCurso} $</td>
+      <td>${curso.estado}</td>
     </tr>`
 	})
 	return texto
@@ -108,11 +122,12 @@ const mostrarCursos = () => {
 const crear = (estudiante) =>{
 	listaEstudiante = require ('./estudiantes.json')
 	cursoestudiante = require ('./cursoestudiante.json')
-	// listar ();
+	listaCursos = require ('./cursos.json')
 	let est ={
 		cedula: estudiante.cedula,
 		nombre: estudiante.nombre,
-		email: estudiante.email
+		email: estudiante.email,
+		modalidad: estudiante.modalidad,
 	}
 
 	let idestcurso ={
@@ -128,6 +143,14 @@ const crear = (estudiante) =>{
 		listaEstudiante.push(est)
 		cursoestudiante.push(idestcurso)
 		guardar()
+	}
+	let estudiantes = cursoestudiante.filter(elemento => elemento.idCurso == estudiante.idCurso)
+	console.log(estudiantes.length)
+	let duplicado2 = listaCursos.find(elemento2 => elemento2.id == estudiante.idCurso)
+	console.log(duplicado2)
+	if(estudiantes.length == duplicado2.cupo){
+		duplicado2.estado = "cerrado"
+		guardarCurso()
 	}
 }
 

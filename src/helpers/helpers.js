@@ -17,11 +17,13 @@ const funciones = require ('.././funciones');
 		}
 	});
 
-	hbs.registerHelper('eliminarEstudiante', (idEst)=>{
-		try {
-			return funciones.eliminarEst(idEst)
-		}catch (err){
-			return "No se pudo eliminar el estudiante"
+	hbs.registerHelper('eliminarEstudiante', (idEst, idCur)=>{
+		if (idEst && idCur){
+			let estudent ={
+				idEst: idEst,
+				idC: idCur,
+			}
+			return funciones.eliminarEst(estudent)
 		}
 	});
 
@@ -42,13 +44,14 @@ const funciones = require ('.././funciones');
 		}
 	})
 
-	hbs.registerHelper('crear', (ced, nomb, email, idCurso) => {
+	hbs.registerHelper('crear', (ced, nomb, email, idCurso, modalidad) => {
 		if (ced){
 			let est ={
 				cedula: parseInt(ced),
 				nombre: nomb,
 				email: email,
-				idCurso:idCurso
+				idCurso:idCurso,
+				modalidad: modalidad
 			}
 			return funciones.crear(est)
 		}
@@ -60,7 +63,7 @@ const funciones = require ('.././funciones');
 				id: parseInt(id),
 				nombre: nombreCurso,
 				duracion: duracion,
-				costo: costoCurso
+				costo: costoCurso,
 			}
 			return funciones.nuevoCurso(curso)
 		}

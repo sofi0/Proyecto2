@@ -48,7 +48,8 @@ app.post('/registrar',function(req,res){
 		ced:req.body.cedula,
 		nomb:req.body.nombre,
 		email:req.body.email,
-		idCurso:req.body.idCurso
+		idCurso:req.body.idCurso,
+		modalidad:req.body.modalidad
 	})
 })
 
@@ -62,6 +63,7 @@ app.post('/eliminar',function(req,res){
 	res.render('cursos2',{
 		titulo:'ver curso',	
 		idEst: req.body.idEst,
+		idCur:req.body.idC,
 		idC:req.body.idCur
 	})
 })

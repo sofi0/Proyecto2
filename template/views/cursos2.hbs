@@ -1,5 +1,5 @@
 {{>header}}
-{{{eliminarEstudiante idEst}}}
+{{{eliminarEstudiante idEst idCur}}}
 
 
 <h3>pagina de estudiantes</h3>
@@ -7,8 +7,8 @@
 <form method="post" action="/eliminar">
 		<div class="row">
 			<div class="col-3">
-		    <label for="staticEmail2">Curso</label>
-		    <input type="text" class="form-control" id="idCurso" value="1" name="idCur" size="5">
+		    <label for="staticEmail2">ID Curso</label>
+		    <input type="text" class="form-control" id="idCurso" value="" name="idCur" size="5">
 		    <button type="submit" class="btn btn-dark">Mostrar</button>
 			</div>
 	    </div>
@@ -16,14 +16,16 @@
 				<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
+				      <th scope="col">Curso</th>
 				      <th scope="col">Cedula</th>
 				      <th scope="col">Nombre</th>
 				      <th scope="col">Email</th>
+				      <th scope="col">Modalidad</th>
 				      <th scope="col"></th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				  	{{idC}}
+					<!-- {{{idC}}}-->
 				    {{{verEstCur idC}}}
 				  </tbody>
 				</table>
