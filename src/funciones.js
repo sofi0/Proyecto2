@@ -25,12 +25,13 @@ let listaCurEst = [];
 const eliminarEst =(estudent) => {
 	console.log("id del estudiante => " + estudent.idEst )
 	console.log("id del curso => " + estudent.idC )
-	console.log(estudent)
+	
 	if (estudent){
 		listaEstudiante=require('./estudiantes.json')
 		listaCurEst=require('./cursoestudiante.json')
 
-		let estudiantes = listaEstudiante.filter(elemento => elemento.cedula != estudent.idEst)
+		console.log(estudent)
+		let estudiantes = listaEstudiante.filter(elemento => elemento.cedula != paseInt(estudent.idEst))
 		let listaCurEst2 = [];
 		for(var i=0; i<listaCurEst.length; i++){
 			if(listaCurEst[i].cedula==estudent.idEst){
