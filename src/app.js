@@ -4,6 +4,7 @@ const path = require('path')
 const hbs = require('hbs')
 const bodyParser = require('body-parser')
 require('./helpers/helpers')
+const port = process.env.PORT || 3000;
 
 
 //path
@@ -63,7 +64,6 @@ app.post('/eliminar',function(req,res){
 	res.render('cursos2',{
 		titulo:'ver curso',	
 		idEst: req.body.idEst,
-		idCur:req.body.idC,
 		idC:req.body.idCur
 	})
 })
@@ -89,9 +89,10 @@ app.get('*', function(req, res){
 	res.render('error');
 });
 
-app.listen(3000, () => {
-	console.log('servidor en el puerto 3000')
+app.listen(port, () => {
+	console.log('servidor en el puerto ' + port)
 });
+
 
 
 
